@@ -52,10 +52,10 @@ uploadArchives {
             pom.project {
                 name 'Preshadow Gradle Plugin'
                 description 'A Gradle plugins that allows to shadow dependencies before compilation'
-                url 'https://github.com/Abnaxos/gradle-preshadow-plugin/'
+                url 'https://github.com/Abnaxos/gradle-preshadow-plugin'
                 scm {
                     connection 'scm:git:https://github.com/Abnaxos/gradle-preshadow-plugin.git'
-                    developerConnection 'scm:git:ssh:git@github.com:Abnaxos/pegdown-doclet.git'
+                    developerConnection 'scm:git:ssh:git@github.com:Abnaxos/gradle-preshadow-plugin.git'
                     url 'https://github.com/Abnaxos/gradle-preshadow-plugin'
                 }
                 licenses {
