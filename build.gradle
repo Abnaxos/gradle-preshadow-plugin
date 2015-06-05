@@ -1,0 +1,77 @@
+apply plugin:'wrapper'
+apply plugin:'groovy'
+apply plugin:'signing'
+apply plugin:'maven'
+
+wrapper {
+    gradleVersion = '2.4'
+}
+
+buildDir = project.file('target')
+
+group = 'ch.raffael.gradlePlugins.preshadow'
+version = '1.0-SNAPSHOT'
+
+archivesBaseName = 'gradle-preshadow-plugin'
+
+sourceCompatibility='1.7'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile localGroovy()
+    compile gradleApi()
+
+    compile group:'com.github.jengelman.gradle.plugins', name:'shadow', version:'1.2.1'
+}
+
+task sourcesJar(type:Jar) {
+    classifier = 'sources'
+
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Preshadow Gradle Plugin'
+                description 'A Gradle plugins that allows to shadow dependencies before compilation'
+                url 'https://github.com/Abnaxos/gradle-preshadow-plugin/'
+                scm {
+                    connection 'scm:git:https://github.com/Abnaxos/gradle-preshadow-plugin.git'
+                    developerConnection 'scm:git:ssh:git@github.com:Abnaxos/pegdown-doclet.git'
+                    url 'https://github.com/Abnaxos/gradle-preshadow-plugin'
+                }
+                licenses {
+                    license {
+                        name 'The MIT License'
+                        url 'http://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'Abnaxos'
+                        name 'Raffael Herzog'
+                        email 'herzog@raffael.ch'
+                    }
+                }
+            }
+        }
+    }
+}
