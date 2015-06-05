@@ -32,14 +32,14 @@ Simply apply the Plugin:
         preshadow group:'org.ow2.asm', name:'asm-debug-all', version:'5.0.3'
     }
 
-    //You'll probably want to relocate some classes:
+    // You'll probably want to relocate some classes:
     preshadowJar {
         relocate 'org.objectweb.asm', 'my.shadowed.asm'
     }
     
 The task `preshadowJar` extends the `ShadowJar` task from the [Shadow](https://github.com/johnrengelman/shadow) plugin, so see there for more information.
 
-The JAR file containing the relocated classes can be found in `$buildDir/preshadow/your-project-name-PRESHADOW.jar.
+The JAR file containing the relocated classes can be found in `$buildDir/preshadow/your-project-name-PRESHADOW.jar`.
 
 ### Sources
 
@@ -59,7 +59,7 @@ And I fell in love with that. I prefer this method of shadowing JARs over the "c
  
   * It's more transparent, I feel more in control
   
-  * It applies also during debugging without having to add any more build steps than the IDE's default compilation
+  * It applies also during debugging without having to add any build steps to the IDE's default compilation
   
 So, I stuck with it and wrote this plugin for Gradle.
 
