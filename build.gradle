@@ -10,7 +10,7 @@ wrapper {
 buildDir = project.file('target')
 
 group = 'ch.raffael.gradlePlugins.preshadow'
-version = '1.0'
+version = '1.0-SNAPSHOT'
 
 archivesBaseName = 'gradle-preshadow-plugin'
 
